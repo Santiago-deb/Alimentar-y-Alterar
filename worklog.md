@@ -118,3 +118,17 @@ Work Log:
 
 Stage Summary:
 - Sin cambios de código necesarios: error transitorio de dev (pestaña stale + HMR de Turbopack), no ocurre en producción ni en carga limpia. Recomendación al usuario: recargar/reesperar el preview tras cada cambio; en Vercel no aplica.
+
+---
+Task ID: 8
+Agent: Z.ai Code (main)
+Task: Preparar el proyecto para deploy en Vercel y documentar el proceso al usuario.
+
+Work Log:
+- package.json: renombrado a "alimentar-y-alterar"; script "build" simplificado a "next build" (los cp -r de standalone eran específicos del sandbox; Vercel corre su propio pipeline y no usa "start").
+- .gitignore: añadidos .screens/ (screenshots de verificación), /db/ y *.db (sqlite del scaffold sin uso — verificado con rg que no hay imports de lib/db).
+- git rm --cached db/custom.db + commit "chore: preparar proyecto para deploy en Vercel".
+- Verificado: repo git inicializado con identity, bun.lock presente (Vercel detecta Bun), dev server sigue en 200.
+
+Stage Summary:
+- Proyecto listo para deploy: build portable, repo limpio, sin variables de entorno obligatorias. Única env opcional: NEXT_PUBLIC_SITE_URL (metadataBase para imágenes OG) tras conocer el dominio final.
