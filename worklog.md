@@ -158,3 +158,17 @@ Work Log:
 
 Stage Summary:
 - Sin cambios. Pendientes de siempre: URL de la encuesta ciudadana cuando esté disponible (SURVEY_FORM_URL en src/data/content.ts), y git push del usuario para publicar los cambios en Vercel.
+
+---
+Task ID: 11
+Agent: Z.ai Code (main)
+Task: Quitar la mención a "Grupo de Estudio de Fauna Serrano (GEFS)" (no participa; es algo aparte).
+
+Work Log:
+- Grep en src: 2 menciones, ambas en src/data/content.ts.
+- Eliminada la fila "Espacio Institucional" de ABOUT.facts (existía solo para nombrar GEFS); la ficha queda con 9 filas.
+- FOOTER.institution → "Facultad de Ciencias Veterinarias — UNICEN" (sin GEFS).
+- Verificado en navegador: 0 menciones de GEFS/Fauna Serrano en el DOM; footer correcto; lint sin errores; commit "content: quitar mencion de GEFS...".
+
+Stage Summary:
+- Sitio sin referencias a GEFS. Pendiente habitual: git push del usuario para publicar en Vercel.
