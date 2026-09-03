@@ -73,3 +73,20 @@ Work Log:
 Stage Summary:
 - Responsive mobile corregido en raíz (html/body) y por sección (overflow-clip), escalable ante futuros elementos decorativos.
 - Sitio sin datos de contacto personales; único CTA de contacto = Google Form de inscripción.
+
+---
+Task ID: 5
+Agent: Z.ai Code (main)
+Task: Correcciones reportadas por el usuario — (1) overflow horizontal en mobile, (2) quitar teléfonos de los integrantes, (3) cambiar "Prototype 2025" → "Prototype 2026" en el footer.
+
+Work Log:
+- Verificado que la eliminación de contactos ya estaba completa: grep sin matches de wa.me/teléfonos/CONTACTS/MessageCircle en src; verificado en DOM visible (0 teléfonos, 0 enlaces wa.me).
+- Diagnóstico de overflow con agent-browser (viewport 390x844 y 320x684): documentElement.scrollWidth == innerWidth en ambos; html/body ya tenían overflow-x: clip; viewport meta correcta; todas las secciones ya usaban SectionShell con overflow-clip y Hero con overflow-hidden; los únicos elementos fuera del viewport son SVGs decorativos recortados por sus contenedores.
+- Refuerzo aplicado: se agregó `overflow-x-clip` al wrapper raíz en src/app/page.tsx (clip no rompe position: sticky del navbar, verificado navSticky top=0 tras scroll).
+- Cambio de año: FOOTER.credits en src/data/content.ts ahora dice "Prototype 2026".
+- Verificación end-to-end: screenshots mobile-top-390.png y mobile-footer-2026.png correctos; lint sin errores; dev.log sin errores (GET / 200).
+
+Stage Summary:
+- El sitio no genera scroll horizontal en mobile (390px y 320px verificados), el navbar sticky sigue funcionando, el footer muestra "Prototype 2026" y no hay datos de contacto visibles.
+- Archivos tocados: src/app/page.tsx (overflow-x-clip), src/data/content.ts (año del prototype).
+- Pendiente por el usuario: URL de la encuesta ciudadana (SURVEY_FORM_URL), más contenido futuro, decisión sobre el punto 4 del PDF, NEXT_PUBLIC_SITE_URL al deployar.

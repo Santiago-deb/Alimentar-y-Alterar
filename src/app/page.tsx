@@ -10,7 +10,7 @@ import { Species } from "@/components/site/species";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col bg-cream-50 text-forest-900">
+    <div className="flex min-h-screen flex-col overflow-x-clip bg-cream-50 text-forest-900">
       {/* Accesibilidad: salto directo al contenido */}
       <a
         href="#contenido"

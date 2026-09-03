@@ -382,5 +382,5 @@ export const FOOTER = {
     "Facultad de Ciencias Veterinarias — UNICEN · Grupo de Estudio de Fauna Serrano (GEFS)",
   linksTitle: "Secciones",
   credits:
-    "Proyecto de Extensión FCV – UNICEN · Sitio desarrollado por Ciencias Exactas (FCEx) · Prototype 2025",
+    "Proyecto de Extensión FCV – UNICEN · Sitio desarrollado por Ciencias Exactas (FCEx) · Prototype 2026",
 };
