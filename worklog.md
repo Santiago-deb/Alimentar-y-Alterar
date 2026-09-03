@@ -147,3 +147,14 @@ Work Log:
 Stage Summary:
 - El sitio ya no expone la mecánica interna de encuestas. Se mantienen: tarjeta pública "Encuesta ciudadana (próximamente)" en #participa y mención de "resultados de las encuestas" en Plataforma digital (marcado al usuario por si quiere ajustar).
 - Pendiente: git push del usuario para reflejar en Vercel (el sandbox no tiene remote configurado).
+
+---
+Task ID: 10
+Agent: Z.ai Code (main)
+Task: Confirmación del usuario sobre elementos dejados en el sitio (sin cambios de código).
+
+Work Log:
+- El usuario confirma: mantener tarjeta pública "Encuesta ciudadana (próximamente)" en #participa y mantener mención de "resultados de las encuestas" en "Plataforma digital (Exactas)".
+
+Stage Summary:
+- Sin cambios. Pendientes de siempre: URL de la encuesta ciudadana cuando esté disponible (SURVEY_FORM_URL en src/data/content.ts), y git push del usuario para publicar los cambios en Vercel.
