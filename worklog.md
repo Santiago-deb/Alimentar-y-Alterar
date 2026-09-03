@@ -90,3 +90,17 @@ Stage Summary:
 - El sitio no genera scroll horizontal en mobile (390px y 320px verificados), el navbar sticky sigue funcionando, el footer muestra "Prototype 2026" y no hay datos de contacto visibles.
 - Archivos tocados: src/app/page.tsx (overflow-x-clip), src/data/content.ts (año del prototype).
 - Pendiente por el usuario: URL de la encuesta ciudadana (SURVEY_FORM_URL), más contenido futuro, decisión sobre el punto 4 del PDF, NEXT_PUBLIC_SITE_URL al deployar.
+
+---
+Task ID: 6
+Agent: Z.ai Code (main)
+Task: Corregir error de hidratación reportado por el usuario ("A tree hydrated but some attributes of the server rendered HTML didn't match") en <body> (className).
+
+Work Log:
+- Reproducido en agent-browser tras recargas en dev; diagnóstico: el className SSR y el del cliente son IDÉNTICOS en carga limpia (verificado comparando curl del HTML vs document.body.className), es decir, no hay mismatch real de contenido en el código de la app.
+- Causa raíz: aviso transitorio propio del modo dev — Turbopack Fast Refresh/HMR deja en el DOM la clase de un build anterior al hidratar (también lo provocan extensiones de navegador que tocan el HTML). No afecta a producción.
+- Fix estándar (mismo patrón ya usado en <html>): se agregó suppressHydrationWarning a <body> en src/app/layout.tsx — solo silencia advertencias de atributos de ese elemento; los mismatches reales de los hijos siguen reportándose.
+- Verificación: console --clear + 2 recargas limpias → 0 errores de hidratación/mismatch; fuentes Lora y Nunito Sans aplicadas; bun run lint sin errores; dev.log sin errores.
+
+Stage Summary:
+- src/app/layout.tsx: <body suppressHydrationWarning> añadido. Consola de dev limpia tras recargas; tipografías intactas; sin cambios visuales.

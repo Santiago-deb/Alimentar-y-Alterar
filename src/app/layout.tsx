@@ -64,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${lora.variable} ${nunitoSans.variable} font-sans antialiased bg-cream-50 text-forest-900`}
       >
         {children}
