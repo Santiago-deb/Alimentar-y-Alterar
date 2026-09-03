@@ -27,7 +27,12 @@ export function SectionShell({
     <section
       id={id}
       aria-labelledby={labelledById}
-      className={cn("relative scroll-mt-24 py-16 md:py-24", className)}
+      className={cn(
+        /* overflow-clip: recorta los blobs decorativos en el borde de la
+           sección para que nunca generen scroll horizontal. */
+        "relative scroll-mt-24 overflow-clip py-16 md:py-24",
+        className
+      )}
     >
       <div
         className={cn(

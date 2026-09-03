@@ -1,11 +1,11 @@
-import { Leaf, MessageCircle } from "lucide-react";
-import { CONTACTS, FOOTER, NAV_LINKS, SITE_TAGLINE } from "@/data/content";
+import { Leaf } from "lucide-react";
+import { FOOTER, NAV_LINKS, SITE_TAGLINE } from "@/data/content";
 
 export function SiteFooter() {
   return (
     <footer className="mt-auto bg-olive-700 text-cream-100">
       <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1.1fr] md:gap-8">
+        <div className="grid gap-10 md:grid-cols-[1.6fr_1fr] md:gap-8">
           {/* Marca */}
           <div>
             <div className="flex items-center gap-3">
@@ -45,32 +45,6 @@ export function SiteFooter() {
               ))}
             </ul>
           </nav>
-
-          {/* Contacto */}
-          <div>
-            <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-tan-300">
-              {FOOTER.contactsTitle}
-            </h3>
-            <ul className="mt-3">
-              {CONTACTS.map((contact) => (
-                <li key={contact.name}>
-                  <a
-                    href={contact.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`WhatsApp de ${contact.name}, teléfono ${contact.phone}`}
-                    className="inline-flex min-h-11 items-center gap-2.5 text-sm text-cream-100/80 transition-colors hover:text-cream-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tan-300/60"
-                  >
-                    <MessageCircle
-                      aria-hidden="true"
-                      className="size-4 shrink-0 text-tan-300"
-                    />
-                    {contact.name} · {contact.phone}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
         {/* Línea inferior */}

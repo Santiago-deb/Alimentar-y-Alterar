@@ -141,10 +141,16 @@
     scroll-behavior: smooth;
     scrollbar-width: thin;
     scrollbar-color: var(--color-tan-300) var(--color-cream-100);
+    /* Evita scroll horizontal por elementos decorativos que exceden el viewport.
+       `clip` no crea contenedor de scroll; `hidden` queda como fallback. */
+    overflow-x: hidden;
+    overflow-x: clip;
   }
   body {
     @apply bg-background text-foreground;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    overflow-x: clip;
   }
   ::selection {
     background-color: var(--color-tan-200);

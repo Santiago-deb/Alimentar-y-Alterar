@@ -57,3 +57,19 @@ Stage Summary:
 - Sitio 100% funcional y verificado en desktop + móvil. Listo para deploy en Vercel.
 - Pendiente futuro: pegar URL de encuesta en SURVEY_FORM_URL (src/data/content.ts) — el estado "Disponible próximamente" se convierte en botón activo automáticamente.
 - Para Vercel: opcionalmente definir NEXT_PUBLIC_SITE_URL con el dominio real (metadata OG).
+
+---
+Task ID: 5
+Agent: main (Z.ai Code)
+Task: Correcciones pedidas por el usuario — overflow horizontal en mobile + quitar teléfonos de contacto
+
+Work Log:
+- Diagnóstico del scroll horizontal: blobs decorativos con offsets negativos (-right-24, -right-28, -left-24) en secciones sin clipping (about, action-plan, faculties) expandían el ancho del documento.
+- Fix global: `overflow-x: hidden` + `overflow-x: clip` en html y body (globals.css). `clip` como preferente (no crea contenedor de scroll, no rompe sticky).
+- Fix estructural: SectionShell ahora incluye `overflow-clip` en sus clases base → cada sección recorta sus propios blobs decorativos, a prueba de futuros agregados.
+- Quitados los contactos: bloque "Si te interesa, comunicate con:" con las 3 tarjetas WhatsApp en join.tsx; columna "Contacto" del footer; constantes CONTACTS, Contact, JOIN.contactsIntro y FOOTER.contactsTitle eliminadas de content.ts (queda solo el formulario de inscripción como vía de contacto).
+- Verificación agent-browser (viewport 390x844): scrollWidth=390=innerWidth → sin scroll horizontal. Desktop 1280px: scrollWidth=1280 → OK. Secciones mobile (hero, Sumate, footer) renderizan alineadas; footer sigue pegado abajo. `agent-browser errors`: 0. Lint: limpio. dev.log: 200s sin errores.
+
+Stage Summary:
+- Responsive mobile corregido en raíz (html/body) y por sección (overflow-clip), escalable ante futuros elementos decorativos.
+- Sitio sin datos de contacto personales; único CTA de contacto = Google Form de inscripción.

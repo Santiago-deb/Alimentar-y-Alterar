@@ -1,8 +1,8 @@
 "use client";
 
-import { ArrowUpRight, Clock, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CONTACTS, JOIN, JOIN_FORM_URL, SURVEY_FORM_URL } from "@/data/content";
+import { JOIN, JOIN_FORM_URL, SURVEY_FORM_URL } from "@/data/content";
 import { Blob, Cattails } from "./decorative";
 import { FadeIn } from "./fade-in";
 import { SectionHeading, SectionShell } from "./section";
@@ -64,43 +64,8 @@ export function Join() {
         </Button>
       </FadeIn>
 
-      {/* Contactos */}
-      <FadeIn delay={0.05} className="mt-12 md:mt-16">
-        <h3 className="text-center font-heading text-xl font-semibold text-cream-50 md:text-2xl">
-          {JOIN.contactsIntro}
-        </h3>
-        <ul className="mx-auto mt-6 grid max-w-4xl gap-4 sm:grid-cols-3">
-          {CONTACTS.map((contact) => (
-            <li key={contact.name}>
-              <a
-                href={contact.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Escribir por WhatsApp a ${contact.name}, teléfono ${contact.phone}`}
-                className="flex min-h-11 items-center gap-4 rounded-2xl border border-cream-50/15 bg-cream-50/10 p-4 transition-colors hover:border-tan-300/40 hover:bg-cream-50/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tan-300/60"
-              >
-                <span
-                  aria-hidden="true"
-                  className="flex size-11 shrink-0 items-center justify-center rounded-full bg-tan-300/20 text-tan-300"
-                >
-                  <MessageCircle className="size-5" />
-                </span>
-                <span className="min-w-0">
-                  <span className="block truncate font-semibold text-cream-50">
-                    {contact.name}
-                  </span>
-                  <span className="block text-sm text-cream-100/75">
-                    {contact.phone}
-                  </span>
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </FadeIn>
-
       {/* Encuesta ciudadana (próximamente) */}
-      <FadeIn delay={0.1} className="mt-8 md:mt-10">
+      <FadeIn delay={0.1} className="mt-12 md:mt-16">
         <div className="mx-auto flex max-w-4xl flex-col gap-5 rounded-3xl border border-cream-50/15 bg-cream-50/[0.07] p-6 sm:flex-row sm:items-center sm:justify-between md:p-7">
           <div className="flex items-start gap-4">
             <span

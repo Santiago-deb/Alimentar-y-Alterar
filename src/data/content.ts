@@ -80,34 +80,6 @@ export const NAV_LINKS: NavLink[] = [
 export const NAV_CTA = { label: "Inscribirme", href: JOIN_FORM_URL };
 
 /* ------------------------------------------------------------------ */
-/*  Contactos (WhatsApp)                                               */
-/* ------------------------------------------------------------------ */
-
-export type Contact = {
-  name: string;
-  phone: string;
-  whatsappUrl: string;
-};
-
-export const CONTACTS: Contact[] = [
-  {
-    name: "Micaela Guzmán",
-    phone: "291 4354433",
-    whatsappUrl: "https://wa.me/5492914354433",
-  },
-  {
-    name: "Abril Petz",
-    phone: "2923 654496",
-    whatsappUrl: "https://wa.me/5492923654496",
-  },
-  {
-    name: "Agustina Pereyra",
-    phone: "2494 321560",
-    whatsappUrl: "https://wa.me/5492494321560",
-  },
-];
-
-/* ------------------------------------------------------------------ */
 /*  Hero                                                               */
 /* ------------------------------------------------------------------ */
 
@@ -390,7 +362,6 @@ export const JOIN = {
     { label: "Exactas", icon: Code2 },
   ] satisfies JoinChip[],
   ctaLabel: "Completar formulario de inscripción",
-  contactsIntro: "Si te interesa, comunicate con:",
   survey: {
     title: "Encuesta ciudadana",
     description:
@@ -410,7 +381,6 @@ export const FOOTER = {
   institution:
     "Facultad de Ciencias Veterinarias — UNICEN · Grupo de Estudio de Fauna Serrano (GEFS)",
   linksTitle: "Secciones",
-  contactsTitle: "Contacto",
   credits:
     "Proyecto de Extensión FCV – UNICEN · Sitio desarrollado por Ciencias Exactas (FCEx) · Prototype 2025",
 };
