@@ -143,10 +143,6 @@ export const ABOUT = {
       value: "Facultad de Ciencias Veterinarias (FCV) – UNICEN",
     },
     {
-      label: "Espacio Institucional",
-      value: "Grupo de Estudio de Fauna Serrano (GEFS)",
-    },
-    {
       label: "Eje Temático / Cátedra Sostén",
       value: "Nutrición Animal y Ecológico (FCV)",
     },
@@ -366,7 +362,7 @@ export const FOOTER = {
   name: SITE_NAME,
   tagline: SITE_TAGLINE,
   institution:
-    "Facultad de Ciencias Veterinarias — UNICEN · Grupo de Estudio de Fauna Serrano (GEFS)",
+    "Facultad de Ciencias Veterinarias — UNICEN",
   linksTitle: "Secciones",
   credits:
     "Proyecto de Extensión FCV – UNICEN · Sitio desarrollado por Ciencias Exactas (FCEx) · Prototype 2026",
