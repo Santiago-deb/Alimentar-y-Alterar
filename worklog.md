@@ -104,3 +104,17 @@ Work Log:
 
 Stage Summary:
 - src/app/layout.tsx: <body suppressHydrationWarning> añadido. Consola de dev limpia tras recargas; tipografías intactas; sin cambios visuales.
+
+---
+Task ID: 7
+Agent: Z.ai Code (main)
+Task: Investigar segundo error de hidratación reportado (aria-controls del Sheet trigger: radix-_R_bindlb_ vs radix-_R_2qindlb_).
+
+Work Log:
+- Carga limpia en agent-browser (console --clear + open): 0 errores de hidratación.
+- Comparación SSR vs cliente: curl del HTML y document.body ambos con aria-controls="radix-_R_2qindlb_" → IDs idénticos, no hay mismatch real en el código actual.
+- El valor del error del usuario (_R_bindlb_, más corto) corresponde a un build anterior: la pestaña del preview quedó abierta a través de varios rebuilds de HMR y al recargar mezcló HTML viejo con bundle nuevo (misma raíz que el issue anterior del body className).
+- Regresión verificada: recarga limpia → 0 errores; menú móvil abre (dialogOpen=true, 5 links + CTA "Inscribirme"); lint sin errores; dev.log 200 OK.
+
+Stage Summary:
+- Sin cambios de código necesarios: error transitorio de dev (pestaña stale + HMR de Turbopack), no ocurre en producción ni en carga limpia. Recomendación al usuario: recargar/reesperar el preview tras cada cambio; en Vercel no aplica.
