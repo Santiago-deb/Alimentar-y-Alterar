@@ -1,37 +1,58 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lora, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { SITE_METADATA } from "@/data/content";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+/* Tipografía del proyecto: Lora (títulos, serif) + Nunito Sans (cuerpo) */
+const lora = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const nunitoSans = Nunito_Sans({
+  variable: "--font-nunito-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Z.ai Code Scaffold - AI-Powered Development",
-  description: "Modern Next.js scaffold optimized for AI-powered development with Z.ai. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-  keywords: ["Z.ai", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React"],
-  authors: [{ name: "Z.ai Team" }],
-  icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
-  },
+  // Dominio de producción para resolver las imágenes de OG/Twitter.
+  // Al deployar en Vercel, definir NEXT_PUBLIC_SITE_URL con el dominio real.
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://alimentar-y-alterar.vercel.app"
+  ),
+  title: SITE_METADATA.title,
+  description: SITE_METADATA.description,
+  keywords: SITE_METADATA.keywords,
+  authors: [
+    {
+      name: "Facultad de Ciencias Veterinarias — UNICEN",
+      url: "https://www.vet.unicen.edu.ar/",
+    },
+  ],
   openGraph: {
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
-    url: "https://chat.z.ai",
-    siteName: "Z.ai",
+    title: SITE_METADATA.title,
+    description: SITE_METADATA.description,
+    siteName: "Alimentar y Alterar",
+    locale: "es_AR",
     type: "website",
+    images: [
+      {
+        url: SITE_METADATA.ogImage.src,
+        width: SITE_METADATA.ogImage.width,
+        height: SITE_METADATA.ogImage.height,
+        alt: SITE_METADATA.ogImage.alt,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
+    title: SITE_METADATA.title,
+    description: SITE_METADATA.description,
+    images: [SITE_METADATA.ogImage.src],
   },
 };
 
@@ -41,9 +62,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${lora.variable} ${nunitoSans.variable} font-sans antialiased bg-cream-50 text-forest-900`}
       >
         {children}
         <Toaster />

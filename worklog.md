@@ -1,0 +1,59 @@
+# Worklog — Proyecto "Alimentar y Alterar" (Extensión FCV-UNICEN)
+
+Sitio web del proyecto de extensión e intervención sanitaria "Alimentar y Alterar" — Lago del Fuerte, Tandil.
+Objetivo: prototipo escalable, deployeable en Vercel, single-page con contenido centralizado.
+
+---
+Task ID: 2
+Agent: main (Z.ai Code)
+Task: Generación de imágenes del sitio con estética del flyer (fotos realistas de fauna y lago)
+
+Work Log:
+- Se generaron 4 imágenes con z-ai CLI (skill image-generation) en /home/z/my-project/public/images/:
+  - hero-capybara.png (1344x768) — capibara al borde del lago con sierras de fondo (hero principal)
+  - especie-carpincho.png (1024x1024) — carpincho en agua entre juncos (tarjeta especie)
+  - especie-aves.png (1024x1024) — patos silvestres nativos en el lago (tarjeta especie)
+  - especie-ganso.png (1024x1024) — ganso gris/ganso europeo en la costa (tarjeta especie)
+- Nota técnica: la API de imágenes requiere tamaños múltiplos de 32 px (1440x720 falla, usar 1344x768). Hubo 429 rate-limit al paralelizar: generar secuencialmente con sleep entre llamadas.
+
+Stage Summary:
+- Imágenes listas en public/images/. El build del sitio (Task 3) las consume desde ahí.
+- Paleta del flyer a respetar: crema #F7F2E4, verde oliva #55683F/#3E4E30, tan #C8B88C, texto verde oscuro #2E3B26.
+---
+Task ID: 3
+Agent: full-stack-developer
+Task: Sitio single-page Next.js 16 "Alimentar y Alterar" (es-AR) — contenido centralizado, design system del flyer, secciones completas, listo para Vercel
+
+Work Log:
+- Creado src/data/content.ts como única fuente de verdad tipada: JOIN_FORM_URL, SURVEY_FORM_URL (vacío → estado "Disponible próximamente"), NAV_LINKS, CONTACTS (WhatsApp), HERO, HIGHLIGHTS (4 stats), ABOUT (párrafos + 8 fichas), SPECIES (3 especies con img/científico), FACULTIES (5 facultades con iconos Lucide), ACTION_PLAN (bloques A/B/C con cita destacada), JOIN (chips + CTA + encuesta), FOOTER, SITE_METADATA.
+- src/app/globals.css: tokens @theme (cream/olive/forest/tan + shadow-soft/card/card-hover con tinte oliva), --font-heading (Lora) y --font-sans (Nunito Sans), scroll suave, ::selection tan, scrollbar personalizada, @media prefers-reduced-motion, utilidad @utility pb-safe (safe-area). Variables shadcn intactas.
+- src/app/layout.tsx: lang="es", Lora + Nunito_Sans (next/font/google, variables CSS), metadata SEO (title/description/keywords/OpenGraph es_AR con /images/hero-capybara.png 1344x768, Twitter card), metadataBase vía NEXT_PUBLIC_SITE_URL (fallback vercel.app). Toaster conservado.
+- src/app/icon.svg: favicon hoja oliva sobre crema.
+- Componentes src/components/site/: fade-in.tsx (Framer Motion whileInView once + useReducedMotion), decorative.tsx (blobs SVG orgánicos + juncos/totoras SVG), section.tsx (SectionShell anclado con scroll-mt-24 + aria-labelledby, SectionHeading con eyebrow pill, BlockHeader A/B/C), navbar.tsx (client: sticky con blur/sombra al scrollear, Sheet móvil, targets ≥44px), hero.tsx (badge pill, tagline serif itálica tan, imagen marco orgánico rounded-tl-[7rem] con ring tan + tarjeta flotante), highlight-strip.tsx, about.tsx, species.tsx, faculties.tsx (grid lg:col-span 3+2), action-plan.tsx (pasos numerados, bullets encuesta, cita destacada), join.tsx (client: banda forest-800, chips facultades, CTA tan-300, tarjetas WhatsApp, tarjeta encuesta con estado deshabilitado), footer.tsx (sticky via mt-auto, 3 columnas, pb-safe).
+- src/app/page.tsx: compone todo; skip-link accesible, main flex-1, footer sticky (min-h-screen flex flex-col).
+- QA: bun run lint → 0 errores; curl / → 200 con todo el copy exacto verificado (grep de textos, anclas, wa.me, forms); imágenes 200; /icon.svg 200; tsc --noEmit sin errores en src/; dev.log sin errores de compilación.
+- Nota dev: el watcher de Turbopack no recompiló globals.css en algunas ediciones (CSS servido stale); un append de contenido disparó el rebuild y quedó verificado en el CSS servido (tokens, utilidades, pb-safe presentes).
+
+Stage Summary:
+- Sitio completo y funcional en / (única ruta), copy 100% en src/data/content.ts.
+- Para habilitar la encuesta «Antes y Después»: completar SURVEY_FORM_URL en src/data/content.ts (1 línea) — la tarjeta cambia sola de "Disponible próximamente" a botón activo.
+- Para producción: definir NEXT_PUBLIC_SITE_URL con el dominio real de Vercel (metadataBase para OG/Twitter).
+- Paleta del flyer aplicada vía tokens Tailwind (bg-olive-600, bg-cream-50, text-forest-900, bg-tan-300, etc.); tipografías Lora/Nunito Sans listas; accesibilidad (ARIA, alt, targets 44px, skip link) y footer sticky verificados.
+
+---
+Task ID: 4
+Agent: main (Z.ai Code)
+Task: Verificación end-to-end con Agent Browser + lint
+
+Work Log:
+- Se abrió http://localhost:3000 con agent-browser (viewport 1280x800): página renderiza sin errores, título correcto "Alimentar y Alterar — Proyecto de Extensión FCV · UNICEN".
+- Verificadas visualmente TODAS las secciones scrolleando: hero, highlight strip, ¿De qué se trata? + Ficha del proyecto, Especies (3 tarjetas con imágenes), Red UNICEN (5 facultades), Propuesta de acción (stand + encuestas + datos), Sumate (chips, CTA form, WhatsApp, placeholder encuesta) y footer pegado al final.
+- Nota: la captura "full-page" mostraba secciones vacías por las animaciones whileInView de Framer Motion; al scrollear como usuario real todas las secciones se renderizan correctamente (confirmado con screenshots por sección).
+- Validados los 3 links del Google Form de inscripción (ID 1FAIpQLSe0aZD4092QcUHujSw2XPkT1Sy27U6y6pCB6hen6wDEKovsuA) y 6 links wa.me (3 en Sumate + 3 en footer).
+- Vista móvil 390x844: hero apilado, botones full-width, menú hamburguesa (Sheet) abre/cierra y navega a #especies correctamente (scrollY=3085), menú se cierra solo tras navegar.
+- agent-browser errors: 0 errores de consola. bun run lint: limpio. dev.log: sin errores de compilación.
+
+Stage Summary:
+- Sitio 100% funcional y verificado en desktop + móvil. Listo para deploy en Vercel.
+- Pendiente futuro: pegar URL de encuesta en SURVEY_FORM_URL (src/data/content.ts) — el estado "Disponible próximamente" se convierte en botón activo automáticamente.
+- Para Vercel: opcionalmente definir NEXT_PUBLIC_SITE_URL con el dominio real (metadata OG).
