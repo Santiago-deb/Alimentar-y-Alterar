@@ -132,3 +132,18 @@ Work Log:
 
 Stage Summary:
 - Proyecto listo para deploy: build portable, repo limpio, sin variables de entorno obligatorias. Única env opcional: NEXT_PUBLIC_SITE_URL (metadataBase para imágenes OG) tras conocer el dominio final.
+
+---
+Task ID: 9
+Agent: Z.ai Code (main)
+Task: Quitar contenido interno (bloque B de encuestas «Antes y Después»), actualizar nombres del equipo en la ficha del proyecto.
+
+Work Log:
+- content.ts: eliminado ACTION_PLAN.surveyBlock completo (QR, bullets antes/después y pregunta clave de validación — interno del proyecto); dataBlock re-letra "C" → "B".
+- content.ts ABOUT.facts: "Agustina Pereyra" → "Agustina Lucía Pereyra"; añadido "Docentes Tutores" (Guillermo Milano, María Laura Doumecq y María Silvia Alzuagaray); añadido "Desarrollo e Infraestructura Web" (Santiago Santillan y Eliana Melina Choque — FCEx).
+- action-plan.tsx: eliminado render del bloque de encuestas y imports sin usar (CircleCheck, Quote); destructuring actualizado.
+- Verificación: lint OK; en DOM ya no están las preguntas internas; ficha muestra nuevos nombres (screenshot); "El stand" queda A → B coherente (screenshot); GET 500 transitorios del hot reload entre ediciones (resueltos, reload 200 y consola 0 errores); commit "content: quitar bloque interno de encuestas...".
+
+Stage Summary:
+- El sitio ya no expone la mecánica interna de encuestas. Se mantienen: tarjeta pública "Encuesta ciudadana (próximamente)" en #participa y mención de "resultados de las encuestas" en Plataforma digital (marcado al usuario por si quiere ajustar).
+- Pendiente: git push del usuario para reflejar en Vercel (el sandbox no tiene remote configurado).
