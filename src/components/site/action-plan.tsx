@@ -1,11 +1,10 @@
-import { CircleCheck, Quote } from "lucide-react";
 import { ACTION_PLAN } from "@/data/content";
 import { Blob } from "./decorative";
 import { FadeIn } from "./fade-in";
 import { BlockHeader, SectionHeading, SectionShell } from "./section";
 
 export function ActionPlan() {
-  const { standBlock, surveyBlock, dataBlock } = ACTION_PLAN;
+  const { standBlock, dataBlock } = ACTION_PLAN;
 
   return (
     <SectionShell id={ACTION_PLAN.id} labelledById="stand-title">
@@ -47,42 +46,7 @@ export function ActionPlan() {
         </ol>
       </FadeIn>
 
-      {/* B — Encuestas «Antes y Después» */}
-      <FadeIn delay={0.05} className="mt-12 md:mt-16">
-        <BlockHeader letter={surveyBlock.letter} title={surveyBlock.title} />
-        <div className="mt-6 rounded-3xl border border-tan-200/50 bg-white p-6 shadow-card md:p-8">
-          <p className="max-w-3xl text-base leading-relaxed text-forest-800/85 md:text-lg">
-            {surveyBlock.description}
-          </p>
-
-          <ul className="mt-5 max-w-3xl space-y-3.5">
-            {surveyBlock.bullets.map((bullet) => (
-              <li key={bullet.lead} className="flex items-start gap-3">
-                <CircleCheck
-                  aria-hidden="true"
-                  className="mt-0.5 size-5 shrink-0 text-olive-600"
-                />
-                <p className="text-sm leading-relaxed text-forest-800/85 md:text-base">
-                  <strong className="font-bold text-forest-900">{bullet.lead}</strong>{" "}
-                  {bullet.text}
-                </p>
-              </li>
-            ))}
-          </ul>
-
-          <figure className="mt-7 rounded-2xl border-l-4 border-tan-300 bg-tan-200/50 p-5 md:p-6">
-            <figcaption className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-olive-700">
-              <Quote aria-hidden="true" className="size-4" />
-              {surveyBlock.quote.label}
-            </figcaption>
-            <blockquote className="mt-3 font-heading text-lg italic leading-relaxed text-forest-900 md:text-xl">
-              {surveyBlock.quote.text}
-            </blockquote>
-          </figure>
-        </div>
-      </FadeIn>
-
-      {/* C — Datos y difusión web */}
+      {/* B — Datos y difusión web */}
       <FadeIn delay={0.05} className="mt-12 md:mt-16">
         <BlockHeader letter={dataBlock.letter} title={dataBlock.title} />
         <div className="mt-6 grid gap-5 md:grid-cols-2 lg:gap-6">

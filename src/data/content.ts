@@ -160,7 +160,15 @@ export const ABOUT = {
     },
     {
       label: "Equipo Estudiantil Ejecutor",
-      value: "Abril Petz y Agustina Pereyra",
+      value: "Abril Petz y Agustina Lucía Pereyra",
+    },
+    {
+      label: "Docentes Tutores",
+      value: "Guillermo Milano, María Laura Doumecq y María Silvia Alzuagaray",
+    },
+    {
+      label: "Desarrollo e Infraestructura Web",
+      value: "Santiago Santillan y Eliana Melina Choque — Ciencias Exactas (FCEx)",
     },
     {
       label: "Lugar de Relevamiento",
@@ -301,29 +309,8 @@ export const ACTION_PLAN = {
       },
     ] satisfies PlanStep[],
   },
-  surveyBlock: {
-    letter: "B",
-    title:
-      "Evaluación de impacto pedagógico — encuestas «Antes y Después»",
-    description:
-      "A través de un código QR desarrollado por la Facultad de Exactas, los visitantes accederán a una plataforma rápida de evaluación:",
-    bullets: [
-      {
-        lead: "Encuesta pre-intervención (antes):",
-        text: "diagnóstico de percepción del público sobre la alimentación de la fauna, mitos digestivos y conducta habitual en el Dique.",
-      },
-      {
-        lead: "Encuesta post-intervención (después):",
-        text: "medición directa del aprendizaje obtenido tras recorrer el stand.",
-      },
-    ],
-    quote: {
-      label: "Pregunta clave de validación ciudadana",
-      text: "«Luego de conocer el impacto biológico, ¿considera que esta cartelería/información explicativa debería estar instalada de forma permanente en el Lago del Fuerte?»",
-    },
-  },
   dataBlock: {
-    letter: "C",
+    letter: "B",
     title: "Procesamiento de datos y difusión web",
     items: [
       {
