@@ -56,7 +56,7 @@ export const SITE_METADATA = {
     "extensión universitaria",
   ],
   ogImage: {
-    src: "/images/hero-capybara.png",
+    src: "/images/hero-capybara.jpg",
     alt: "Carpincho en la costa del Lago del Fuerte de Tandil, con las sierras de fondo",
     width: 1344,
     height: 768,
@@ -98,7 +98,7 @@ export const HERO = {
     href: "#proyecto",
   },
   image: {
-    src: "/images/hero-capybara.png",
+    src: "/images/hero-capybara.jpg",
     alt: "Carpincho en la costa del Lago del Fuerte de Tandil, con las sierras de fondo",
   },
   floatingCard: {
@@ -199,7 +199,7 @@ export const SPECIES = {
       scientificName: "Hydrochoerus hydrochaeris",
       description:
         "Herbívoros mamíferos semi-acuáticos y fermentadores cecales.",
-      image: "/images/especie-carpincho.png",
+      image: "/images/especie-carpincho.jpg",
       alt: "Carpincho (Hydrochoerus hydrochaeris) en el agua entre juncos del Lago del Fuerte",
     },
     {
@@ -207,7 +207,7 @@ export const SPECIES = {
       scientificName: "Anas flavirostris · Anas georgica · Dendrocygna viduata",
       description:
         "Patos silvestres, gallaretas y macás que habitan las orillas del lago.",
-      image: "/images/especie-aves.png",
+      image: "/images/especie-aves.jpg",
       alt: "Patos silvestres nativos nadando en el Lago del Fuerte",
     },
     {
@@ -215,7 +215,7 @@ export const SPECIES = {
       scientificName: "Anser anser",
       description:
         "Población introducida de alto contacto e interacción alimentaria directa con el público.",
-      image: "/images/especie-ganso.png",
+      image: "/images/especie-ganso.jpg",
       alt: "Ganso doméstico asilvestrado en la costa del Lago del Fuerte",
     },
   ] satisfies SpeciesItem[],

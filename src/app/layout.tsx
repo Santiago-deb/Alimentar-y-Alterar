@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Lora, Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import { Toaster } from "@/components/ui/toaster";
 import { SITE_METADATA } from "@/data/content";
 
 /* Tipografía del proyecto: Lora (títulos, serif) + Nunito Sans (cuerpo) */
@@ -62,13 +61,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es">
       <body
-        suppressHydrationWarning
         className={`${lora.variable} ${nunitoSans.variable} font-sans antialiased bg-cream-50 text-forest-900`}
       >
         {children}
-        <Toaster />
       </body>
     </html>
   );
