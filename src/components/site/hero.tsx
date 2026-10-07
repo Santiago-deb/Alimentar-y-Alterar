@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ArrowRight, PawPrint, Sprout } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { HERO } from "@/data/content";
+import { HERO, INSCRIPCIONES_ABIERTAS } from "@/data/content";
 import { Blob } from "./decorative";
 import { FadeIn } from "./fade-in";
 
@@ -57,16 +57,18 @@ export function Hero() {
             delay={0.26}
             className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
-            <Button
-              asChild
-              size="lg"
-              className="h-12 rounded-full bg-olive-600 px-7 text-base font-bold text-cream-50 shadow-card hover:bg-olive-700"
-            >
-              <a href={HERO.primaryCta.href} target="_blank" rel="noopener noreferrer">
-                {HERO.primaryCta.label}
-                <ArrowRight aria-hidden="true" className="size-4" />
-              </a>
-            </Button>
+            {INSCRIPCIONES_ABIERTAS ? (
+              <Button
+                asChild
+                size="lg"
+                className="h-12 rounded-full bg-olive-600 px-7 text-base font-bold text-cream-50 shadow-card hover:bg-olive-700"
+              >
+                <a href={HERO.primaryCta.href} target="_blank" rel="noopener noreferrer">
+                  {HERO.primaryCta.label}
+                  <ArrowRight aria-hidden="true" className="size-4" />
+                </a>
+              </Button>
+            ) : null}
             <Button
               asChild
               variant="outline"

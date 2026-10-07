@@ -1,8 +1,13 @@
 "use client";
 
-import { ArrowUpRight, Clock } from "lucide-react";
+import { ArrowUpRight, Clock, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { JOIN, JOIN_FORM_URL, SURVEY_FORM_URL } from "@/data/content";
+import {
+  INSCRIPCIONES_ABIERTAS,
+  JOIN,
+  JOIN_FORM_URL,
+  SURVEY_FORM_URL,
+} from "@/data/content";
 import { Blob, Cattails } from "./decorative";
 import { FadeIn } from "./fade-in";
 import { SectionHeading, SectionShell } from "./section";
@@ -30,8 +35,10 @@ export function Join() {
       <SectionHeading
         id="participa-title"
         eyebrow={JOIN.eyebrow}
-        title={JOIN.title}
-        description={JOIN.description}
+        title={INSCRIPCIONES_ABIERTAS ? JOIN.title : JOIN.closed.title}
+        description={
+          INSCRIPCIONES_ABIERTAS ? JOIN.description : JOIN.closed.description
+        }
         dark
       />
 
@@ -50,18 +57,25 @@ export function Join() {
         </ul>
       </FadeIn>
 
-      {/* CTA principal */}
+      {/* CTA principal (o aviso de inscripciones cerradas) */}
       <FadeIn delay={0.1} className="mt-8 flex justify-center md:mt-10">
-        <Button
-          asChild
-          size="lg"
-          className="h-14 rounded-full bg-tan-300 px-8 text-base font-bold text-forest-900 shadow-card hover:bg-tan-200"
-        >
-          <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer">
-            {JOIN.ctaLabel}
-            <ArrowUpRight aria-hidden="true" className="size-5" />
-          </a>
-        </Button>
+        {INSCRIPCIONES_ABIERTAS ? (
+          <Button
+            asChild
+            size="lg"
+            className="h-14 rounded-full bg-tan-300 px-8 text-base font-bold text-forest-900 shadow-card hover:bg-tan-200"
+          >
+            <a href={JOIN_FORM_URL} target="_blank" rel="noopener noreferrer">
+              {JOIN.ctaLabel}
+              <ArrowUpRight aria-hidden="true" className="size-5" />
+            </a>
+          </Button>
+        ) : (
+          <span className="inline-flex h-14 items-center gap-2 rounded-full bg-cream-50/10 px-8 text-base font-bold text-cream-100/80">
+            <Lock aria-hidden="true" className="size-5" />
+            {JOIN.closed.badge}
+          </span>
+        )}
       </FadeIn>
 
       {/* Encuesta ciudadana (próximamente) */}

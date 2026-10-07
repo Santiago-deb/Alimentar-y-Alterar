@@ -16,6 +16,13 @@ import {
 /*  Enlaces / formularios                                              */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Inscripciones al equipo. Con `false` se ocultan todos los botones al
+ * formulario y la sección «Sumate» muestra «Inscripciones cerradas».
+ * Para reabrir la convocatoria, cambiar a `true`.
+ */
+export const INSCRIPCIONES_ABIERTAS = false;
+
 /** Formulario de inscripción de voluntariado (Google Forms). */
 export const JOIN_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSe0aZD4092QcUHujSw2XPkT1Sy27U6y6pCB6hen6wDEKovsuA/viewform";
@@ -144,7 +151,7 @@ export const ABOUT = {
     },
     {
       label: "Eje Temático / Cátedra Sostén",
-      value: "Nutrición Animal y Ecológico (FCV)",
+      value: "Nutrición y Ecología Animal (FCV)",
     },
     {
       label: "Cátedras Integradas de Apoyo",
@@ -152,7 +159,7 @@ export const ABOUT = {
     },
     {
       label: "Autora e Impulsora Principal",
-      value: "Micaela Noemí Guzmán",
+      value: "Micaela Noemí Guzman",
     },
     {
       label: "Equipo Estudiantil Ejecutor",
@@ -345,6 +352,13 @@ export const JOIN = {
     { label: "Exactas", icon: Code2 },
   ] satisfies JoinChip[],
   ctaLabel: "Completar formulario de inscripción",
+  /** Textos que se muestran cuando INSCRIPCIONES_ABIERTAS es false. */
+  closed: {
+    title: "La convocatoria de este año ya cerró",
+    description:
+      "¡Gracias a todos los estudiantes que se inscribieron! Pronto vamos a anunciar la próxima convocatoria.",
+    badge: "Inscripciones cerradas",
+  },
   survey: {
     title: "Encuesta ciudadana",
     description:

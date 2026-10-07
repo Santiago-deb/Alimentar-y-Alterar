@@ -13,7 +13,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { NAV_CTA, NAV_LINKS, SITE_NAME } from "@/data/content";
+import {
+  INSCRIPCIONES_ABIERTAS,
+  NAV_CTA,
+  NAV_LINKS,
+  SITE_NAME,
+} from "@/data/content";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -70,15 +75,17 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           {/* CTA escritorio */}
-          <Button
-            asChild
-            className="hidden h-11 rounded-full bg-olive-600 px-5 text-sm font-bold text-cream-50 shadow-soft hover:bg-olive-700 lg:inline-flex"
-          >
-            <a href={NAV_CTA.href} target="_blank" rel="noopener noreferrer">
-              {NAV_CTA.label}
-              <ArrowUpRight aria-hidden="true" className="size-4" />
-            </a>
-          </Button>
+          {INSCRIPCIONES_ABIERTAS ? (
+            <Button
+              asChild
+              className="hidden h-11 rounded-full bg-olive-600 px-5 text-sm font-bold text-cream-50 shadow-soft hover:bg-olive-700 lg:inline-flex"
+            >
+              <a href={NAV_CTA.href} target="_blank" rel="noopener noreferrer">
+                {NAV_CTA.label}
+                <ArrowUpRight aria-hidden="true" className="size-4" />
+              </a>
+            </Button>
+          ) : null}
 
           {/* Menú móvil */}
           <Sheet>
@@ -126,17 +133,19 @@ export function Navbar() {
                   ))}
                 </ul>
               </nav>
-              <div className="px-4 pb-6">
-                <Button
-                  asChild
-                  className="h-12 w-full rounded-full bg-olive-600 text-base font-bold text-cream-50 hover:bg-olive-700"
-                >
-                  <a href={NAV_CTA.href} target="_blank" rel="noopener noreferrer">
-                    {NAV_CTA.label}
-                    <ArrowUpRight aria-hidden="true" className="size-4" />
-                  </a>
-                </Button>
-              </div>
+              {INSCRIPCIONES_ABIERTAS ? (
+                <div className="px-4 pb-6">
+                  <Button
+                    asChild
+                    className="h-12 w-full rounded-full bg-olive-600 text-base font-bold text-cream-50 hover:bg-olive-700"
+                  >
+                    <a href={NAV_CTA.href} target="_blank" rel="noopener noreferrer">
+                      {NAV_CTA.label}
+                      <ArrowUpRight aria-hidden="true" className="size-4" />
+                    </a>
+                  </Button>
+                </div>
+              ) : null}
             </SheetContent>
           </Sheet>
         </div>
